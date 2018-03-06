@@ -52,17 +52,19 @@ def get_total_availability_map(config_file):
         total_availability_map[region] = get_region_availability_map(region, config=config, oci_config=oci_config)
     return total_availability_map
 
-# Check parameters
-parser = argparse.ArgumentParser(description='List available compute capacity in OCI')
-parser.add_argument('--config', type=str, help='Config file')
-args = parser.parse_args()
+if __name__ == "__main__":
 
-total_availability_map = get_total_availability_map(args.config)
-for region in total_availability_map:
-    print '************************************************'
-    print 'Available shapes in %s' % region
-    print '************************************************'
-    for shape in total_availability_map[region]:
-        ad_capacity_list = total_availability_map[region][shape]
-        if sum(ad_capacity_list) > 0:
-            print '%s: AD1: %s, AD2: %s, AD3: %s' % (shape, ad_capacity_list[0], ad_capacity_list[1], ad_capacity_list[2])
+    # Check parameters
+    parser = argparse.ArgumentParser(description='List available compute capacity in OCI')
+    parser.add_argument('--config', type=str, help='Config file', required=True)
+    args = parser.parse_args()
+
+    total_availability_map = get_total_availability_map(args.config)
+    for region in total_availability_map:
+        print '************************************************'
+        print 'Available shapes in %s' % region
+        print '************************************************'
+        for shape in total_availability_map[region]:
+            ad_capacity_list = total_availability_map[region][shape]
+            if sum(ad_capacity_list) > 0:
+                print '%s: AD1: %s, AD2: %s, AD3: %s' % (shape, ad_capacity_list[0], ad_capacity_list[1], ad_capacity_list[2])

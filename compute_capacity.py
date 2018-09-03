@@ -66,5 +66,4 @@ if __name__ == "__main__":
         print '************************************************'
         for shape in total_availability_map[region]:
             ad_capacity_list = total_availability_map[region][shape]
-            if sum(ad_capacity_list) > 0:
-                print '%s: AD1: %s, AD2: %s, AD3: %s' % (shape, ad_capacity_list[0], ad_capacity_list[1], ad_capacity_list[2])
+            print '%s: AD1: %s, AD2: %s, AD3: %s' % (shape, ad_capacity_list[0], ad_capacity_list[1], ad_capacity_list[2])

@@ -81,14 +81,14 @@ Any region able to satify all requests has equal chance of being chosen.  And an
 able to satisfy a given request has equal chance of being chosen, with the most demanding requests satisfied first.
 
 A couple of examples for "requests":
-- `--requests "logging:2"` will choose a shape for "logging" with 2 instances in one AD.
-- `--requests "logging:2,1,3"` will choose a shape for "logging" with 2 instances in one AD, 1 instance in another, and 3 in another.
+- `--requests "webtier:2"` will choose a shape for "webtier" with 2 instances in one AD.
+- `--requests "webtier:2,1,3"` will choose a shape for "webtier" with 2 instances in one AD, 1 instance in another, and 3 in another.
 - `--requests "master:1,2 worker:2,1,3"` will chose:
   - A shape for "master" with 1 instance in one AD and 2 instances in another.
   - A shape for "worker" with 2 instances in one AD, 1 instance in another, and 3 in yet another.
 
 ```
-python compute_capacity.py --config /tmp/my_config --requests "master:1,2 worker:2,1,3"
+python compute_randomizer.py --config /tmp/my_config --requests "master:1,2 worker:2,1,3"
 ```
 
 The output of the tool shows the chosen region, and for each request, the chosen shape and AD list that satisfy the request.
